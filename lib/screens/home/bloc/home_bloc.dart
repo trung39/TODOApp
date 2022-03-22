@@ -29,7 +29,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<AddToDoEvent>((event, emit) async {
       emit(state.copyWith(status: Submitting()));
       await Future.delayed(const Duration(milliseconds: 500));
-      if (event.content == null || event.content!.isEmpty) {
+      if (event.content.isEmpty) {
         emit(state.copyWith(status: SubmissionFailed(message: "Empty todo content")));
         return;
       }

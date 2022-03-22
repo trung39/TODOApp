@@ -81,6 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
           tooltip: "Add todo",
           onPressed: () async {
             String? resultText = await showTextFieldDialog(context);
+            // Pressed cancel
+            if (resultText == null) {
+              return;
+            }
+            // Pressed OK
             context.read<HomeBloc>().add(AddToDoEvent(content: resultText));
             // showProgressDialog(context);
           },
@@ -93,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'All',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.square),
+              icon: Icon(Icons.crop_square),
               label: 'Incomplete',
             ),
             BottomNavigationBarItem(
