@@ -16,3 +16,8 @@ class MarkToDoEvent extends ToDoEvent {
   const MarkToDoEvent(this.toDo, this.isCompleted);
 }
 
+class DeleteToDoEvent extends ToDoEvent {
+  final String todoId;
+
+  const DeleteToDoEvent(this.todoId);
+}

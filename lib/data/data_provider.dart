@@ -65,11 +65,11 @@ class DataProvider {
 
   /// Function to insert a new ToDo into database, with the given [toDo]
   ///
-  Future<void> insertToDo(ToDo toDo) async {
+  Future<int> insertToDo(ToDo toDo) async {
     // Get a reference to the database.
     final db = await database();
 
-    await db.insert(
+    return await db.insert(
       tableName,
       toDo.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -78,12 +78,12 @@ class DataProvider {
 
   /// Function to update a ToDo in database, with the given [toDo]
   ///
-  Future<void> updateToDo(ToDo toDo) async {
+  Future<int> updateToDo(ToDo toDo) async {
     // Get a reference to the database.
     final db = await database();
 
     // Update the given Todo.
-    await db.update(
+    return await db.update(
       tableName,
       toDo.toJson(),
       where: '$id = ?',
@@ -93,17 +93,17 @@ class DataProvider {
 
   /// Function to delete a ToDo in database, with the given [id]
   ///
-  Future<void> deleteToDo(String id) async {
+  Future<int> deleteToDo(String todoId) async {
     // Get a reference to the database.
     final db = await database();
 
     // Remove the ToDo from the database.
-    await db.delete(
+    return await db.delete(
       tableName,
       // Use a `where` clause to delete a specific ToDo.
       where: '$id = ?',
       // Pass the ToDo's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
+      whereArgs: [todoId],
     );
   }
 }

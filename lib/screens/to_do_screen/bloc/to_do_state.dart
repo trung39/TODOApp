@@ -4,7 +4,8 @@ class ToDoState extends Equatable {
   const ToDoState({
     required this.viewType,
     this.todos,
-    this.status = const InitialStatus()
+    this.getToDosStatus = const InitialStatus(),
+    this.toDoInteractStatus = const InitialStatus(),
   });
 
   /// The view type of todo page
@@ -12,22 +13,25 @@ class ToDoState extends Equatable {
   /// The todo list to show to UI
   final List<ToDo>? todos;
   /// The status of action
-  final SubmissionStatus status;
+  final SubmissionStatus getToDosStatus;
+  final SubmissionStatus toDoInteractStatus;
 
   @override
   List<Object?> get props => [
-    viewType, todos, status
+    viewType, todos, getToDosStatus, toDoInteractStatus
   ];
 
   ToDoState copyWith({
     ToDoViewType? viewType,
     List<ToDo>? todos,
-    SubmissionStatus? status
+    SubmissionStatus? getToDosStatus,
+    SubmissionStatus? toDoInteractStatus
   }) {
     return ToDoState(
       viewType: viewType ?? this.viewType,
       todos: todos ?? this.todos,
-      status: status ?? this.status,
+      getToDosStatus: getToDosStatus ?? this.getToDosStatus,
+      toDoInteractStatus: toDoInteractStatus ?? this.toDoInteractStatus,
     );
   }
 }

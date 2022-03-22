@@ -9,7 +9,7 @@ abstract class HomeEvent extends Equatable {
 
 /// Event to add new Todo
 class AddToDoEvent extends HomeEvent {
-  final String content;
+  final String? content;
 
   const AddToDoEvent({required this.content});
 }

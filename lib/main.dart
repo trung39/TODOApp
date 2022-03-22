@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:to_do_app/screens/home/home_screen.dart';
@@ -5,7 +6,6 @@ import 'package:to_do_app/screens/home/home_screen.dart';
 void main() async {
   runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-
 }
 
 class MyApp extends StatelessWidget {

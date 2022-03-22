@@ -21,12 +21,86 @@ Future<String?> showTextFieldDialog(BuildContext context) async {
                   Navigator.pop(context);
               },
             ),
-            ElevatedButton(
+            TextButton(
               child: Text('OK'),
               onPressed: () => Navigator.pop(context, textEditingController.text)
             ),
           ],
         );
       });
+}
 
+Future showConfirmDialog(BuildContext context, {String? title, Function? onSubmit}) async {
+  await showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(title ?? ""),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.pop(context);
+              if (onSubmit != null) {
+                onSubmit();
+              }
+            }
+          ),
+        ],
+      );
+    }
+  );
+}
+
+/// Show a snack bar with the given information
+showSnackBar(BuildContext context, String message, {String? actionName, function, SnackBarBehavior? behavior, int? duration}) {
+  ScaffoldMessenger.of(context).removeCurrentSnackBar();
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    behavior: behavior ?? SnackBarBehavior.floating,
+    duration: Duration(milliseconds: duration ?? 4000),
+    content: Text(
+      message,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    ),
+    action: SnackBarAction(
+      label: actionName ?? "OK",
+      onPressed: function ?? () {},
+    ),
+  ));
+}
+
+Future showAlertDialog(BuildContext context, String message) async {
+  await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+          actions: <Widget>[
+            TextButton(
+                child: Text('OK'),
+                onPressed: () => Navigator.pop(context)
+            ),
+          ],
+        );
+      });
+}
+
+Future showProgressDialog(BuildContext context) async {
+  await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return const Dialog(
+          child: Center(
+              heightFactor: 2,
+              child: CircularProgressIndicator()
+          ),
+        );
+      });
 }
