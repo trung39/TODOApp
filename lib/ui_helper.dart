@@ -60,8 +60,9 @@ Future showConfirmDialog(BuildContext context, {String? title, Function? onSubmi
 
 /// Show a snack bar with the given information
 showSnackBar(BuildContext context, String message, {String? actionName, function, SnackBarBehavior? behavior, int? duration}) {
-  ScaffoldMessenger.of(context).removeCurrentSnackBar();
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  ScaffoldMessengerState scaffoldMessengerState = ScaffoldMessenger.of(context);
+  scaffoldMessengerState.removeCurrentSnackBar();
+  scaffoldMessengerState.showSnackBar(SnackBar(
     behavior: behavior ?? SnackBarBehavior.floating,
     duration: Duration(milliseconds: duration ?? 4000),
     content: Text(

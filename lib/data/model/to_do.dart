@@ -1,13 +1,14 @@
 
+import 'package:equatable/equatable.dart';
 import 'package:uuid/uuid.dart';
 
-class ToDo {
+class ToDo extends Equatable {
   ToDo({
     String? id,
     this.content,
     this.isCompleted = false,
   })  : assert(
-  id == null || id.isEmpty,
+  id == null || id.isNotEmpty,
   'id can not be null or empty',
   ),
         id = id ?? const Uuid().v4();
@@ -33,4 +34,10 @@ class ToDo {
   String toString() {
     return 'ToDo{id: $id, content: $content, isCompleted: $isCompleted}';
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    id, content, isCompleted
+  ];
 }
