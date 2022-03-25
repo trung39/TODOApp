@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/data/model/to_do.dart';
 import 'package:to_do_app/data/submission_status.dart';
-import 'package:to_do_app/screens/to_do_screen/bloc/to_do_bloc.dart';
+import 'package:to_do_app/bloc/to_do_bloc/to_do_bloc.dart';
 import 'package:to_do_app/ui_helper.dart';
 
 class ToDoScreen extends StatefulWidget {

@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/data/data_provider.dart';
 import 'package:to_do_app/data/model/to_do.dart';
 import 'package:to_do_app/data/submission_status.dart';
-import 'package:to_do_app/screens/home/bloc/home_bloc.dart';
-import 'package:to_do_app/screens/to_do_screen/bloc/to_do_bloc.dart';
+import 'package:to_do_app/bloc/home_bloc/home_bloc.dart';
+import 'package:to_do_app/bloc/to_do_bloc/to_do_bloc.dart';
 import 'package:to_do_app/screens/to_do_screen/to_do_screen.dart';
 import 'package:to_do_app/ui_helper.dart';
 
