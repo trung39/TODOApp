@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/data/data_provider.dart';
-import 'package:to_do_app/data/model/to_do.dart';
 import 'package:to_do_app/data/submission_status.dart';
 import 'package:to_do_app/bloc/home_bloc/home_bloc.dart';
 import 'package:to_do_app/bloc/to_do_bloc/to_do_bloc.dart';
@@ -38,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               showProgressDialog(context);
             } else if (state.status is SubmissionFailed) {
               Navigator.pop(context);
-              showAlertDialog(context, state.status.toString());
+              showAlertDialog(context, state.status.message);
             } else if (state.status is SubmissionSuccess) {
               Navigator.pop(context);
             }

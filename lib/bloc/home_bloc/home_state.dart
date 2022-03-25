@@ -23,4 +23,9 @@ class HomeState extends Equatable {
       status: status ?? this.status
     );
   }
+
+  @override
+  String toString() {
+    return 'HomeState{currentPage: $currentPage, status: $status}';
+  }
 }

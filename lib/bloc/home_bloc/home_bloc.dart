@@ -21,11 +21,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     2: "Completed ToDos"
   };
 
-  ToDoBloc allTodoBloc = ToDoBloc(ToDoViewType.all);
-  ToDoBloc incompleteTodoBloc = ToDoBloc(ToDoViewType.incomplete);
-  ToDoBloc completeTodoBloc = ToDoBloc(ToDoViewType.complete);
+  late ToDoBloc allTodoBloc;
+  late ToDoBloc incompleteTodoBloc;
+  late ToDoBloc completeTodoBloc;
 
   HomeBloc(this.dataProvider) : super(const HomeState()) {
+    allTodoBloc = ToDoBloc(viewType: ToDoViewType.all, dataProvider: dataProvider);
+    incompleteTodoBloc = ToDoBloc(viewType: ToDoViewType.incomplete, dataProvider: dataProvider);
+    completeTodoBloc = ToDoBloc(viewType: ToDoViewType.complete, dataProvider: dataProvider);
+
     on<AddToDoEvent>((event, emit) async {
       emit(state.copyWith(status: Submitting()));
       await Future.delayed(const Duration(milliseconds: 500));
@@ -60,9 +64,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(state.copyWith(currentPage: event.pageNumber));
 
       // Animate page view to that page
-      pageController.animateToPage(event.pageNumber,
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.linear);
+      try {
+        pageController.animateToPage(event.pageNumber,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.linear);
+      } catch (e) {
+        addError(e);
+      }
+
     });
 
   }

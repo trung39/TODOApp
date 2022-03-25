@@ -10,8 +10,8 @@ part 'to_do_state.dart';
 
 class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
   ToDoViewType viewType;
-  DataProvider dataProvider = DataProvider();
-  ToDoBloc(this.viewType) : super(ToDoState(viewType: viewType)) {
+  DataProvider dataProvider;
+  ToDoBloc({required this.viewType, required this.dataProvider}) : super(ToDoState(viewType: viewType)) {
 
     on<LoadToDosEvent>((event, emit) async {
       emit(state.copyWith(getToDosStatus: Submitting()));
@@ -70,6 +70,15 @@ class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
         add(LoadToDosEvent());
       }
     });
+  }
+
+
+  @override
+  void onTransition(Transition<ToDoEvent, ToDoState> transition) {
+    if (kDebugMode) {
+      print(transition.toString());
+    }
+    super.onTransition(transition);
   }
 
   @override

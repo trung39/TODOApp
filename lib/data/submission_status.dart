@@ -1,8 +1,12 @@
+import 'package:equatable/equatable.dart';
 
 /// The status of actions.
 /// Including initial, submitting, success and failed status
-abstract class SubmissionStatus {
-  const SubmissionStatus();
+abstract class SubmissionStatus extends Equatable {
+  final String message;
+  const SubmissionStatus({String? message}) : message = message ?? "";
+  @override
+  List<Object?> get props => [];
 }
 
 class InitialStatus extends SubmissionStatus {
@@ -10,39 +14,31 @@ class InitialStatus extends SubmissionStatus {
 
   @override
   String toString() {
-    return '';
+    return 'InitialStatus{}';
   }
 }
 
 class Submitting extends SubmissionStatus {
-  final String message;
-
-  Submitting({this.message = ''});
+  const Submitting({String? message}): super(message: message);
 
   @override
   String toString() {
-    return message;
+    return 'Submitting{}';
   }
 }
 
 class SubmissionSuccess extends SubmissionStatus {
-  String? message;
-
-  SubmissionSuccess({this.message});
-
+  const SubmissionSuccess({String? message}): super(message: message);
   @override
   String toString() {
-    return message ?? '';
+    return 'SubmissionSuccess{}';
   }
 }
 
 class SubmissionFailed extends SubmissionStatus {
-  final String? message;
-
-  SubmissionFailed({this.message});
-
+  const SubmissionFailed({String? message}): super(message: message);
   @override
   String toString() {
-    return message ?? '';
+    return 'SubmissionFailed{}';
   }
 }

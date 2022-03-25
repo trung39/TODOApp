@@ -36,8 +36,19 @@ class ToDo extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
     id, content, isCompleted
   ];
+
+  ToDo copyWith({
+    String? id,
+    String? content,
+    bool? isCompleted,
+  }) {
+    return ToDo(
+      id: id ?? this.id,
+      content: content ?? this.content,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
 }

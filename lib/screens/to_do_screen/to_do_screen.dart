@@ -31,7 +31,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
           showProgressDialog(context);
         } else if (state.toDoInteractStatus is SubmissionFailed) {
           Navigator.pop(context);
-          showAlertDialog(context, state.toDoInteractStatus.toString());
+          showAlertDialog(context, state.toDoInteractStatus.message);
         } else if (state.toDoInteractStatus is SubmissionSuccess) {
           Navigator.pop(context);
         }
